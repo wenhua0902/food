@@ -89,23 +89,23 @@ def webhook():
     #info = "動作：" + action + "； 查詢內容：" + msg
     if (action == "food"):
         time =  req.get("queryResult").get("parameters").get("time")
-        info = "您要查詢的時段" + time
-    #     #if (Cond == "food"):
-    #         collection_ref = db.collection("食物")
-    #         docs = collection_ref.get()
-    #         found = False
-    #         for doc in docs:
-    #             if keyword in doc.to_dict()["food"]:
-    #                 found = True 
-    #                 info += "地點：" + doc.to_dict()["地點"] + "\n\n" 
-    #                 info += "時段：" + doc.to_dict()["時段"] + "\n\n" 
-    #                 info += "店家名稱：" + doc.to_dict()["店家名稱"] + "\n\n" 
-    #                 info += "地址：" + doc.to_dict()["地址"] + "\n\n"
-    #                 info += "營業時間：" + doc.to_dict()["營業時間"] + "\n\n"
-    #                 info += "評價：" + doc.to_dict()["評價"] + "\n\n" 
-    #                 info += "類型：" + doc.to_dict()["類型"] + "\n"
-    #         if not found:
-    #             info += "很抱歉，目前無符合這個關鍵字的相關食物喔"  
+        info = "您要查詢的時段是" + time
+        if (Cond == "food"):
+        collection_ref = db.collection("食物")
+        docs = collection_ref.get()
+        found = False
+        for doc in docs:
+            if keyword in doc.to_dict()["food"]:
+                found = True 
+                info += "地點：" + doc.to_dict()["地點"] + "\n\n" 
+                info += "時段：" + doc.to_dict()["時段"] + "\n\n" 
+                info += "店家名稱：" + doc.to_dict()["店家名稱"] + "\n\n" 
+                info += "地址：" + doc.to_dict()["地址"] + "\n\n"
+                info += "營業時間：" + doc.to_dict()["營業時間"] + "\n\n"
+                info += "評價：" + doc.to_dict()["評價"] + "\n\n" 
+                info += "類型：" + doc.to_dict()["類型"] + "\n"
+        if not found:
+            info += "很抱歉，目前無符合這個關鍵字的相關食物喔"  
     return make_response(jsonify({"fulfillmentText": info}))
 
 if __name__ == "__main__":
