@@ -97,13 +97,13 @@ def webhook():
         for doc in docs:
             dict = doc.to_dict()
             if location in doc.to_dict()["地點"] and time in doc.to_dict()["時段"]:
-                    info += "地點：" + dict["地點"] + "\n\n" 
-                    info += "時段：" + dict["時段"] + "\n\n" 
-                    info += "店家名稱：" + dict["店家名稱"] + "\n\n" 
-                    info += "地址：" + dict["地址"] + "\n\n"
-                    info += "營業時間：" + dict["營業時間"] + "\n\n"
-                    info += "評價：" + dict["評價"] + "\n\n" 
-                    info += "類型：" + dict["類型"] + "\n"      
+                    info += "地點：" + dict["地點"] + "\n" 
+                    info += "時段：" + dict["時段"] + "\n" 
+                    info += "店家名稱：" + dict["店家名稱"] + "\n" 
+                    info += "地址：" + dict["地址"] + "\n"
+                    info += "營業時間：" + dict["營業時間"] + "\n"
+                    info += "評價：" + dict["評價"] + "\n" 
+                    info += "類型：" + dict["類型"] + "\n\n"      
         
         info += result 
     return make_response(jsonify({"fulfillmentText": info}))
