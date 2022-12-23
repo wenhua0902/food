@@ -90,13 +90,13 @@ def webhook():
     if (action == "food"):
         location =  req.get("queryResult").get("parameters").get("location")
         time =  req.get("queryResult").get("parameters").get("time")
-        info = "您要查詢的地點是" + location + "且您要查詢的時段是" + time
+        info = "您要查詢的地點是" + location + "且您要查詢的時段是" + time+",相關資料\n"
         collection_ref = db.collection("食物")
         docs = collection_ref.get()
         result = ""
         for doc in docs:
             dict = doc.to_dict()
-            if time in doc.to_dict()["時段"]:
+            if location in doc.to_dict()["地點"] && time in doc.to_dict()["時段"]:
                     info += "地點：" + dict["地點"] + "\n\n" 
                     info += "時段：" + dict["時段"] + "\n\n" 
                     info += "店家名稱：" + dict["店家名稱"] + "\n\n" 
