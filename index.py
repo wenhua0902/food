@@ -1,9 +1,14 @@
-from flask import Flask, render_template, request
+import requests,json
+from bs4 import BeautifulSoup
+
+from flask import Flask, render_template, request, make_response, jsonify
+
 import firebase_admin
 from firebase_admin import credentials, firestore
 
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
+db = firestore.client()
 app = Flask(__name__)
 
 
@@ -78,7 +83,7 @@ def search():
 def webhook():
 # build a request object
     req = request.get_json(force=True)
-        # fetch queryResult from json
+    # fetch queryResult from json
     action =  req.get("queryResult").get("action")
     msg =  req.get("queryResult").get("queryText")
     info = "動作：" + action + "； 查詢內容：" + msg
@@ -102,15 +107,6 @@ def webhook():
     #                 info += "類型：" + doc.to_dict()["類型"] + "\n"
     #         if not found:
     #             info += "很抱歉，目前無符合這個關鍵字的相關食物喔"  
-    return make_response(jsonify({"fulfillmentText": info}))
-@app.route("/webhook1", methods=["POST"])
-def webhook1():
-    # build a request object
-    req = request.get_json(force=True)
-    # fetch queryResult from json
-    action =  req["queryResult"]["action"]
-    msg =  req["queryResult"]["queryText"]
-    info = "動作：" + action + "； 查詢內容：" + msg
     return make_response(jsonify({"fulfillmentText": info}))
 
 if __name__ == "__main__":
