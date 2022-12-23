@@ -88,8 +88,9 @@ def webhook():
     #msg =  req.get("queryResult").get("queryText")
     #info = "動作：" + action + "； 查詢內容：" + msg
     if (action == "food"):
+        location =  req.get("queryResult").get("parameters").get("location")
         time =  req.get("queryResult").get("parameters").get("time")
-        info = "您要查詢的時段是" + time
+        info = "您要查詢的地點是" + location + "且您要查詢的時段是" + time
         collection_ref = db.collection("食物")
         docs = collection_ref.get()
         result = ""
