@@ -104,7 +104,11 @@ def webhook():
                     info += "營業時間：" + dict["營業時間"] + "\n\n"
                     info += "評價：" + dict["評價"] + "\n\n" 
                     info += "類型：" + dict["類型"] + "\n"      
-        info += result
+        if result =="":
+            result = "抱歉,查無相關條件的選修課程"
+        
+        return result
+        #info += result
     return make_response(jsonify({"fulfillmentText": info}))
 
 if __name__ == "__main__":
