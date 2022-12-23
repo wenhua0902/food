@@ -103,10 +103,10 @@ def webhook():
                     info += "地址：" + dict["地址"] + "\n\n"
                     info += "營業時間：" + dict["營業時間"] + "\n\n"
                     info += "評價：" + dict["評價"] + "\n\n" 
-                    info += "類型：" + dict["類型"] + "\n"
-            if not found:
-                info += "很抱歉，目前無符合這個關鍵字的相關食物喔"  
+                    info += "類型：" + dict["類型"] + "\n"      
         info += result
+            if not found:
+                info += "很抱歉，目前無符合這個關鍵字的相關食物喔"
     return make_response(jsonify({"fulfillmentText": info}))
 
 if __name__ == "__main__":
