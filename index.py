@@ -93,10 +93,12 @@ def webhook():
         info = "您要查詢的地點是" + location + "且您要查詢的時段是" + time+"\n\n\n"
         collection_ref = db.collection("食物")
         docs = collection_ref.get()
+        found = False
         result = ""
         for doc in docs:
             dict = doc.to_dict()
             if location in doc.to_dict()["地點"] and time in doc.to_dict()["時段"]:
+                    found = True
                     info += "地點：" + dict["地點"] + "\n\n" 
                     info += "時段：" + dict["時段"] + "\n\n" 
                     info += "店家名稱：" + dict["店家名稱"] + "\n\n" 
@@ -104,7 +106,9 @@ def webhook():
                     info += "營業時間：" + dict["營業時間"] + "\n\n"
                     info += "評價：" + dict["評價"] + "\n\n" 
                     info += "類型：" + dict["類型"] + "\n"      
-        info += result 
+        if not found:
+                info += "很抱歉，目前無符合這個關鍵字的相關電影喔"
+        #info += result 
     return make_response(jsonify({"fulfillmentText": info}))
 
 if __name__ == "__main__":
