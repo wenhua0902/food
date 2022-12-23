@@ -103,7 +103,15 @@ def webhook():
     #         if not found:
     #             info += "很抱歉，目前無符合這個關鍵字的相關食物喔"  
     return make_response(jsonify({"fulfillmentText": info}))
-
+@app.route("/webhook1", methods=["POST"])
+def webhook1():
+    # build a request object
+    req = request.get_json(force=True)
+    # fetch queryResult from json
+    action =  req["queryResult"]["action"]
+    msg =  req["queryResult"]["queryText"]
+    info = "動作：" + action + "； 查詢內容：" + msg
+    return make_response(jsonify({"fulfillmentText": info}))
 
 if __name__ == "__main__":
     app.run()
