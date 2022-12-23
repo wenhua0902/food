@@ -20,8 +20,8 @@ def index():
     homepage += "<a href=/welcome?nick=黃汶樺>傳送使用者暱稱</a><br>"
     homepage += "<a href=/account>網頁表單輸入實例</a><br>"
     homepage += "<a href=/I>黃汶樺簡介網頁</a><br>"
-    homepage += "<a href=/search>食物查詢</a><br>"
-    homepage += "<a href=/webhook>查詢</a><br>"
+    homepage += "<a href=/search>食物關鍵字查詢</a><br>"
+    homepage += "<a href=/webhook>食物查詢</a><br>"
     return homepage
 
 
