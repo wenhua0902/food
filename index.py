@@ -107,8 +107,7 @@ def webhook():
         if not found::
             info += "抱歉，目前無符合這個關鍵字的相關資訊喔" 
         
-        return info
-        #info += result
+        info += result
     return make_response(jsonify({"fulfillmentText": info}))
 
 if __name__ == "__main__":
