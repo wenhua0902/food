@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    homepage = "<h1>黃汶樺Python網頁2</h1>"
+    homepage = "<h1>黃汶樺Python網頁</h1>"
     homepage += "<a href=/mis>MIS</a><br>"
     homepage += "<a href=/today>顯示日期時間</a><br>"
     homepage += "<a href=/welcome?nick=黃汶樺>傳送使用者暱稱</a><br>"
@@ -104,8 +104,8 @@ def webhook():
                     info += "營業時間：" + dict["營業時間"] + "\n\n"
                     info += "評價：" + dict["評價"] + "\n\n" 
                     info += "類型：" + dict["類型"] + "\n"
-             #if not found:
-                #info += "很抱歉，目前無符合這個關鍵字的相關食物喔"  
+            if not found:
+                info += "很抱歉，目前無符合這個關鍵字的相關食物喔"  
         info += result
     return make_response(jsonify({"fulfillmentText": info}))
 
