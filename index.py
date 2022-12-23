@@ -85,12 +85,13 @@ def webhook():
     req = request.get_json(force=True)
     # fetch queryResult from json
     action =  req.get("queryResult").get("action")
-    msg =  req.get("queryResult").get("queryText")
-    info = "動作：" + action + "； 查詢內容：" + msg
-    #if (action == "food"):
-        # Cond =  req.get("queryResult").get("parameters").get("location")
-        # keyword =  req.get("queryResult").get("parameters").get("time")
-        # info = "您要查詢地點的" + Cond + "，關鍵字是：" + keyword + "\n\n"
+    #msg =  req.get("queryResult").get("queryText")
+    #info = "動作：" + action + "； 查詢內容：" + msg
+    if (action == "food"):
+        location =  req.get("queryResult").get("parameters").get("location")
+        time =  req.get("queryResult").get("parameters").get("time")
+        info = "您要查詢地點的" + location + "，關鍵字是：" + location + "\n\n"
+        info = "您要查詢時段的" + time + "，關鍵字是：" + time + "\n\n"
     #     #if (Cond == "food"):
     #         collection_ref = db.collection("食物")
     #         docs = collection_ref.get()
